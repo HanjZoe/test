@@ -1,8 +1,18 @@
 @extends('Admin.layouts.theme')
 @section('main')
     Добавления поста
-    <form action="{{route('admin.post.store')}}" method="POST">
+    <form action="{{route('admin.post.store')}}" method="POST" enctype="multipart/form-data">
         @csrf
+        <label>Превью</label>
+        <input name = "preview_image" type="file">
+        @error('preview_image')
+        {{$message}}
+        @enderror
+        <label>Главное изображение</label>
+        <input name = "main_image" type="file">
+        @error('preview_image')
+        {{$message}}
+        @enderror
         <label>Название</label>
         <input type="text" placeholder="Название поста" name="title">
         @error('title')

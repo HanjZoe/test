@@ -4,7 +4,9 @@
     <main class="blog-post">
         <div class="container">
             <h1 class="edica-page-title" data-aos="fade-up">{{$post->title}}</h1>
-            <p class="edica-blog-post-meta" data-aos="fade-up" data-aos-delay="200">{{$date->day}} {{$date->translatedFormat('F')}} {{$date->year}} {{$date->format('H:i')}} Коментариев: {{$post->comments->count()}}</p>
+            <p class="edica-blog-post-meta" data-aos="fade-up"
+               data-aos-delay="200">{{$date->day}} {{$date->translatedFormat('F')}} {{$date->year}} {{$date->format('H:i')}}
+                Коментариев: {{$post->comments->count()}}</p>
             <section class="blog-post-featured-img" data-aos="fade-up" data-aos-delay="300">
                 <img src="{{asset('storage/'. $post->main_image)}}" alt="featured image" class="w-100">
             </section>
@@ -15,59 +17,98 @@
 
                     </div>
                 </div>
-                <div class="row mb-5">
-                    <div class="col-md-4 mb-3" data-aos="fade-right">
-                        <img src="assets/images/blog_post_1.jpg" alt="blog post" class="img-fluid">
-                    </div>
-                    <div class="col-md-4 mb-3" data-aos="fade-up">
-                        <img src="assets/images/blog_post_2.jpg" alt="blog post" class="img-fluid">
-                    </div>
-                    <div class="col-md-4 mb-3" data-aos="fade-left">
-                        <img src="assets/images/blog_post_3.jpg" alt="blog post" class="img-fluid">
-                    </div>
-                </div>
+
 
             </section>
-            <div class="row">
-                <div class="col-lg-9 mx-auto">
-                    <section class="related-posts">
-                        <h2 class="section-title mb-4" data-aos="fade-up">Рекомендуемые посты</h2>
-                        <div class="row">
-                            @if(count($relatedPosts) > 0)
+            @if(count($relatedPosts) > 0)
+                <div class="row">
+                    <div class="col-lg-9 mx-auto">
+                        <section class="related-posts">
+                            <h2 class="section-title mb-4" data-aos="fade-up">Рекомендуемые посты</h2>
+                            <div class="row">
+
                                 @foreach($relatedPosts as $relatedPost)
-                            <div class="col-md-4" data-aos="fade-right" data-aos-delay="100">
-                                <img src="assets/images/blog_post_related_1.png" alt="related post" class="post-thumbnail">
-                                <p class="post-category">{{$relatedPost->category->title}}</p>
-                                <h5 class="post-title">{{$relatedPost->title}}</h5>
-                            </div>
+                                    <div class="col-md-4" data-aos="fade-right" data-aos-delay="100">
+                                        <img src="assets/images/blog_post_related_1.png" alt="related post"
+                                             class="post-thumbnail">
+                                        <p class="post-category">{{$relatedPost->category->title}}</p>
+                                        <h5 class="post-title">{{$relatedPost->title}}</h5>
+                                    </div>
 
                                 @endforeach
-                            @endif
-                        </div>
-                    </section>
-                    <section class="comment-section mx-auto" style="margin-top: 100px">
-                        <div>
-                        <h2 class="section-title mb-5" data-aos="fade-up">Поделись свои мнением</h2>
-                        </div>
-                            <form action="{{route('post.comment.store', $post->id)}}" method="post">
-                                @csrf
-                            <div class="row">
-                                <div class="form-group col-12" data-aos="fade-up">
-                                    <label for="comment" class="sr-only">Комментарий</label>
-                                    <textarea name="comment" id="comment" class="form-control" placeholder="Comment" rows="10">Комментарий</textarea>
-                                </div>
-                                <input type = "hidden" name="post_id" value="{{$post->id}}">
-                            </div>
 
-                            <div class="row">
-                                <div class="col-12" data-aos="fade-up">
-                                    <input type="submit" value="Оставить комментарий" class="btn btn-warning">
-                                </div>
                             </div>
-                        </form>
-                    </section>
+                            @endif
+
+                        </section>
+
+
+                        <section>
+                            @auth()
+                            <form action="{{route('post.like.store',$post->id)}}" method="post">
+                                @csrf
+                                <span>
+                                    {{$post->liked_users_count}}
+                                </span>
+                                <button class=" border-0 bg-transparent" type="submit">
+
+
+                                        <i class="fa{{auth()->user()->likedPosts->contains($post->id) ? "s" : "r"}} fa-heart"></i>
+
+
+                                </button>
+                            </form>
+                            @endauth
+                            @guest()
+                                <span>
+                                        {{$post->liked_users_count}}
+                                    </span>
+                                <i class="far fa-heart"></i>
+                            @endguest
+                        </section>
+                        <section class="comment-section mx-auto" style="margin-top: 100px">
+                            <div>
+                                <h2 class="section-title mb-5" data-aos="fade-up">Поделись свои мнением
+                                    ({{$post->comments->count()}})</h2>
+                            </div>
+                            @if(count($post->comments) > 0)
+                                <section class="comment-list mb-5">
+                                    @foreach($post->comments as $comment)
+                                        <div class="comment-text mb-3">
+                    <span class="username">
+                        <div>
+                      {{$comment->user->name}}
+                        </div>
+                      <span class="text-muted float-right">{{$comment->DateAsCarbon->diffForHumans()}}</span>
+                    </span>{{$comment->message}}
+                                        </div>
+                                    @endforeach
+                                </section>
+                            @else
+                                Нет комментариев
+                            @endif
+                            @auth()
+                                <form action="{{route('post.comment.store', $post->id)}}" method="post">
+                                    @csrf
+                                    <div class="row">
+                                        <div class="form-group col-12" data-aos="fade-up">
+                                            <label for="comment" class="sr-only">Комментарий</label>
+                                            <textarea name="message" id="comment" class="form-control"
+                                                      placeholder="Comment"
+                                                      rows="10">Комментарий</textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-12" data-aos="fade-up">
+                                            <input type="submit" value="Оставить комментарий" class="btn btn-warning">
+                                        </div>
+                                    </div>
+                                </form>
+                            @endauth
+                        </section>
+                    </div>
                 </div>
-            </div>
         </div>
     </main>
 @endsection

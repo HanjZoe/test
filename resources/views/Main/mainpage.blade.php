@@ -9,15 +9,38 @@
                     @if(count($posts) > 0)
                         @foreach($posts as $post)
                             <a href="{{route('post.show',$post->id)}}">
-                            <div class="col-md-4 fetured-post blog-post" data-aos="fade-right">
-                                <div class="blog-post-thumbnail-wrapper">
-                                    <img src="{{asset('storage' . $post->preview_image)}}" alt="blog post">
+                                <div class="col-md-4 fetured-post blog-post" data-aos="fade-right">
+                                    <div class="blog-post-thumbnail-wrapper">
+                                        <img src="{{asset('/storage/' . $post->preview_image)}}" alt="blog post">
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <p class="blog-post-category">{{$post->category->title}}</p>
+                                        @auth()
+                                        <form action="{{route('post.like.store',$post->id)}}" method="post">
+                                            @csrf
+                                            <span>
+                                        {{$post->liked_users_count}}
+                                    </span>
+                                            <button class=" border-0 bg-transparent" type="submit">
+
+
+                                                    <i class="fa{{auth()->user()->likedPosts->contains($post->id) ? "s" : "r"}} fa-heart"></i>
+
+
+                                            </button>
+                                        </form>
+                                        @endauth
+                                        @guest()
+                                            <span>
+                                        {{$post->liked_users_count}}
+                                    </span>
+                                            <i class="far fa-heart"></i>
+                                        @endguest
+                                    </div>
+                                    <a class="blog-post-permalink">
+                                        <h6 class="blog-post-title">{{$post->title}}</h6>
+                                    </a>
                                 </div>
-                                <p class="blog-post-category">{{$post->category->title}}</p>
-                                <a  class="blog-post-permalink">
-                                    <h6 class="blog-post-title">{{$post->title}}</h6>
-                                </a>
-                            </div>
                             </a>
                         @endforeach
                     @else
@@ -33,7 +56,8 @@
                                 <ul class="post-list">
                                     @foreach($likedPosts as $likedPost)
                                         <li class="post">
-                                            <a href="{{route('post.show',$likedPost->id)}}" class="post-permalink media">
+                                            <a href="{{route('post.show',$likedPost->id)}}"
+                                               class="post-permalink media">
                                                 <img src="{{asset('storage' . $likedPost->preview_image)}}"
                                                      alt="blog post">
                                                 <div class="media-body">

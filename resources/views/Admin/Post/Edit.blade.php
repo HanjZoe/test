@@ -1,10 +1,22 @@
 @extends('Admin.layouts.theme')
 @section('main')
     Добавления категорий
-    <form action="{{route('admin.post.update', $post->id)}}" method="POST">
+    <form action="{{route('admin.post.update', $post->id)}}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PATCH')
         <label>Редакстирование категории</label>
+        <label>Превью</label>
+        <img src="{{asset('/storage/'.$post->preview_image)}}">
+        <input name = "preview_image" type="file">
+        @error('preview_image')
+        {{$message}}
+        @enderror
+        <label>Главное изображение</label>
+        <img src="{{asset('/storage/'.$post->main_image)}}">
+        <input name = "main_image" type="file">
+        @error('preview_image')
+        {{$message}}
+        @enderror
         <input type="text" placeholder="Название категории" name="title" value="{{$post->title}}">
         @error('title')
         <div> Название должно быть</div>

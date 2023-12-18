@@ -9,6 +9,7 @@ class CreateController extends Controller
 {
     public function __invoke()
     {
+
         return view('Admin.Category.Create');
     }
 }

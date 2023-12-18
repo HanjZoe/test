@@ -18,6 +18,6 @@ class UpdateController extends BaseController
 
 
 
-        return view('admin.post.show',compact('post'));
+        return view('Admin.Post.Show',compact('post'));
     }
 }

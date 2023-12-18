@@ -18,6 +18,6 @@ class ShowController extends Controller
             ->where('id','!=',$post->id)
             ->get()
             ->take(3);
-        return view('main.show',compact('post','date','relatedPosts'));
+        return view('Main.show',compact('post','date','relatedPosts'));
     }
 }
