@@ -20,6 +20,29 @@
 
 
             </section>
+            <section>
+                @auth()
+                    <form action="{{route('post.like.store',$post->id)}}" method="post">
+                        @csrf
+                        <span>
+                                    {{$post->liked_users_count}}
+                                </span>
+                        <button class=" border-0 bg-transparent" type="submit">
+
+
+                            <i class="fa{{auth()->user()->likedPosts->contains($post->id) ? "s" : "r"}} fa-heart"></i>
+
+
+                        </button>
+                    </form>
+                @endauth
+                @guest()
+                    <span>
+                                        {{$post->liked_users_count}}
+                                    </span>
+                    <i class="far fa-heart"></i>
+                @endguest
+            </section>
             @if(count($relatedPosts) > 0)
                 <div class="row">
                     <div class="col-lg-9 mx-auto">
@@ -29,10 +52,12 @@
 
                                 @foreach($relatedPosts as $relatedPost)
                                     <div class="col-md-4" data-aos="fade-right" data-aos-delay="100">
-                                        <img src="assets/images/blog_post_related_1.png" alt="related post"
+                                        <a href="{{route('post.show',$relatedPost->id)}}">
+                                        <img src="{{asset('/storage/' . $relatedPost->preview_image)}}" alt="related post"
                                              class="post-thumbnail">
                                         <p class="post-category">{{$relatedPost->category->title}}</p>
                                         <h5 class="post-title">{{$relatedPost->title}}</h5>
+                                            </a>
                                     </div>
 
                                 @endforeach
@@ -43,29 +68,7 @@
                         </section>
 
 
-                        <section>
-                            @auth()
-                            <form action="{{route('post.like.store',$post->id)}}" method="post">
-                                @csrf
-                                <span>
-                                    {{$post->liked_users_count}}
-                                </span>
-                                <button class=" border-0 bg-transparent" type="submit">
 
-
-                                        <i class="fa{{auth()->user()->likedPosts->contains($post->id) ? "s" : "r"}} fa-heart"></i>
-
-
-                                </button>
-                            </form>
-                            @endauth
-                            @guest()
-                                <span>
-                                        {{$post->liked_users_count}}
-                                    </span>
-                                <i class="far fa-heart"></i>
-                            @endguest
-                        </section>
                         <section class="comment-section mx-auto" style="margin-top: 100px">
                             <div>
                                 <h2 class="section-title mb-5" data-aos="fade-up">Поделись свои мнением

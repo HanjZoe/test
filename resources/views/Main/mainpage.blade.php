@@ -1,6 +1,5 @@
 @extends('layouts.theme')
 @section('main')
-
     <main class="blog">
         <div class="container">
             <h1 class="edica-page-title" data-aos="fade-up">Blog</h1>
@@ -15,10 +14,12 @@
                                     </div>
                                     <div class="d-flex justify-content-between">
                                         <p class="blog-post-category">{{$post->category->title}}</p>
+
                                         @auth()
                                         <form action="{{route('post.like.store',$post->id)}}" method="post">
                                             @csrf
                                             <span>
+
                                         {{$post->liked_users_count}}
                                     </span>
                                             <button class=" border-0 bg-transparent" type="submit">
@@ -30,12 +31,16 @@
                                             </button>
                                         </form>
                                         @endauth
+
                                         @guest()
-                                            <span>
+                                            <div>
+                                            <span class=" border-0 bg-transparent">
                                         {{$post->liked_users_count}}
                                     </span>
                                             <i class="far fa-heart"></i>
+                                            </div>
                                         @endguest
+
                                     </div>
                                     <a class="blog-post-permalink">
                                         <h6 class="blog-post-title">{{$post->title}}</h6>
@@ -93,3 +98,9 @@
 
     </main>
 @endsection
+<script>
+    import Likedcomponent from "../../js/components/likedcomponent";
+    export default {
+        components: {Likedcomponent}
+    }
+</script>

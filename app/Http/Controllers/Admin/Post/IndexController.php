@@ -11,6 +11,6 @@ class IndexController extends BaseController
     public function __invoke()
     {
         $posts = Post::all();
-        return view('Admin.Post.Index',compact('posts'));
+        return view('Admin.post.Index',compact('posts'));
     }
 }

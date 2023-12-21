@@ -20,4 +20,3 @@ class StoreController extends BaseController
         return redirect()->route('admin.post.index');
     }
 }
-

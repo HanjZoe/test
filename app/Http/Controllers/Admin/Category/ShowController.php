@@ -10,6 +10,6 @@ class ShowController extends Controller
 {
     public function __invoke(Category $category)
     {
-       return view('Admin.Category.Show',compact('category'));
+        return view('Admin.Category.Show',compact('category'));
     }
 }

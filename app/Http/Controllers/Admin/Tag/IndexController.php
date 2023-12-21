@@ -11,6 +11,6 @@ class IndexController extends Controller
     public function __invoke()
     {
         $tags = Tag::all();
-        return view('Admin.Tag.Index',compact('tags'));
+        return view('Admin.tag.Index',compact('tags'));
     }
 }

@@ -14,7 +14,7 @@ class UpdateController extends BaseController
     {
 
         $data = $request->validated();
-       $post =  $this->service->update($data, $post);
+        $post =  $this->service->update($data, $post);
 
 
 
