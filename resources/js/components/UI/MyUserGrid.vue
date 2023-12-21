@@ -30,9 +30,9 @@
                         <tr>
                         <td>{{ user.id }}</td>
                             <td>
-                                <input>
+                                <my-input :placeholder="user.name" v-model = "newName"/>
                             </td>
-                        <td><input :placeholder="user.email"></td>
+                        <td><my-input :placeholder="user.email" v-model = "newEmail"/></td>
                         <td>{{ user.created_at }}</td>
                         <td>
                             <select >
@@ -43,9 +43,6 @@
                     </tbody>
                 </table>
             </div>
-            <td>
-                <my-input :placeholder="empy" v-model="inputtext"></my-input>
-            </td>
             <!-- /.card-body -->
         </div>
         <!-- /.card -->
@@ -62,8 +59,8 @@ export default {
     },
     data(){
       return{
-          empy:'111111',
-          inputtext: '',
+          newName: null,
+          newEmail: null,
       }
     },
     mounted() {
