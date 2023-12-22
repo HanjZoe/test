@@ -1,10 +1,12 @@
 import MyNavBar from "./MyNavBar";
 import MyUserGrid from "./MyUserGrid";
 import MyInput from "./MyInput";
+import MyPopup from "./MyPopup";
 export default [
     MyNavBar,
     MyUserGrid,
     MyInput,
+    MyPopup,
 ]
 // import Vue from 'vue';
 //

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Main;
+namespace App\Http\Controllers\Vue\Admin\Main;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -9,7 +9,7 @@ class IndexController extends Controller
 {
     public function __invoke()
     {
-    return view('Admin.Main.Index');
-
+        return view('Vue.Admin.Main.Index');
     }
+
 }

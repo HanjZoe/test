@@ -18,9 +18,6 @@
 //
 // // const files = require.context('./', true, /\.vue$/i)
 // // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
-// // components.forEach(component => {
-// //     Vue.component(component.name, component)
-// // })
 //
 // Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 // Vue.component('adminuserindex', require('./components/Pages/AdminUserIndex.vue').default);
@@ -38,13 +35,18 @@
 //require('./bootstrap');
 import { createApp } from 'vue'
 import AdminUserIndex from "./components/Pages/AdminUserIndex"
+import ShowUser from "./components/Pages/Admin/Users/ShowUser"
 import components from './components/UI/index'
 import './bootstrap'
+import router from "./router/router";
 //Vue.component('adminuserindex', require('./components/Pages/AdminUserIndex.vue').default)
 const app = createApp(app);
 components.forEach(component => {
     app.component(component.name, component)
 })
 app.component('adminuserindex', AdminUserIndex);
+app.component('showuser', ShowUser);
 
-app.mount('#app');
+app
+    .use(router)
+    .mount('#app');

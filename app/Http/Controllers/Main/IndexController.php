@@ -13,6 +13,7 @@ class IndexController extends Controller
     {
 
 
-      return redirect()->route('post.index');
+//      return redirect()->route('post.index');
+        return view('Vue.Admin.Main.Index');
     }
 }

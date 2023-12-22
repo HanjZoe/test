@@ -1,11 +1,13 @@
 <template>
 <div>
+    <router-view></router-view>
     <my-nav-bar></my-nav-bar>
     <div class="content-wrapper">
         <my-user-grid
             :users="users"
             :roles="roles"
-            @remove="deleteUser"
+            @remove= "deleteUser"
+            @update = "updateUser"
             ></my-user-grid>
     </div>
 </div>
@@ -36,6 +38,15 @@ export default {
                    console.log('sdsddsd')
        })
        },
+       updateUser(id, newName, newEmail, newRole){
+           console.log(id,newName,newEmail,newRole)
+         axios.patch(`/api/vue/admin/users/${id}`,{name: newName, email: newEmail, role: newRole,user_id: id}).then(data => {
+             console.log(data)
+             this.getUsers()
+         }).catch(function (e){
+             console.log(e)
+         })
+       },
        deleteUser(user){
          axios.delete(`/api/vue/admin/users/${user}`)
            .then(data =>{
@@ -43,6 +54,7 @@ export default {
                console.log(data)
            })
            .catch()
+
        },
    }
 

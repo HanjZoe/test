@@ -28,6 +28,7 @@ Route::group(['namespace' => 'Vue', 'prefix' => 'vue'], function(){
         Route::group(['namespace' => 'User','prefix' => 'users'],function (){
             Route::get('/','IndexController@index')->name('vue.admin.user.index');
             Route::delete('/{user}','DeleteController')->name('vue.admin.user.delete');
+            Route::patch('/{user}','UpdateController')->name('vue.admin.user.update');
         });
     });
 });

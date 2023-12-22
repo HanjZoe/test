@@ -96,12 +96,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 Route::group(['namespace' => 'Vue', 'prefix' => 'vue'], function(){
-    Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
+    Route::group(['namespace' => 'Admin'], function () {
         Route::group(['namespace' => 'Main'], function () {
             Route::get('/', 'IndexController')->name('vue.admin.main.index');
-        });
-        Route::group(['namespace' => 'User','prefix' => 'users'],function (){
-           Route::get('/','IndexController')->name('vue.admin.user.index');
         });
     });
 });
