@@ -59,7 +59,7 @@ export default {
     name: "MyCategoryGrid",
     props: {
         categories: {
-            type: array,
+            type: Array,
             default: () => [],
         },
         data() {
@@ -82,11 +82,11 @@ export default {
                 this.userCategory = category
 
             },
-            deleteCategory(id){
+            deleteCategory(id) {
                 this.$emit('remove', id)
             },
-            editCategory(id, edit, newTitle){
-                if(edit){
+            editCategory(id, edit, newTitle) {
+                if (edit) {
                     this.$emit('update', id, newTitle)
                 }
                 this.targetCategory = null

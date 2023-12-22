@@ -31,4 +31,11 @@ Route::group(['namespace' => 'Vue', 'prefix' => 'vue'], function(){
             Route::patch('/{user}','UpdateController')->name('vue.admin.user.update');
         });
     });
+    Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
+        Route::group(['namespace' => 'Category','prefix' => 'category'],function (){
+            Route::get('/','IndexController')->name('vue.admin.category.index');
+            Route::delete('/{category}','DeleteController')->name('vue.admin.category.delete');
+            Route::patch('/{category}','UpdateController')->name('vue.admin.category.update');
+        });
+    });
 });
