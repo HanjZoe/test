@@ -1,8 +1,8 @@
 <template>
     <div>
-        {{user}}
-<!--        <h2>Юзер {{ user.name }}</h2>-->
-<!--        <a href="#" @click.prevent="deleteClikc(user.id)">Удалить</a>-->
+
+        <h2>Юзер {{ user.name }}</h2>
+        <a href="#" @click.prevent="deleteClikc(user.id)">Удалить</a>
     </div>
     <div>
         <table>
@@ -15,9 +15,9 @@
             </thead>
             <tbody>
             <tr>
-<!--                <td>{{ user.id }}</td>-->
-<!--                <td>{{ user.name }}</td>-->
-<!--                <td>{{ user.created_at }}</td>-->
+                <td>{{ user.id }}</td>
+                <td>{{ user.name }}</td>
+                <td>{{ user.created_at }}</td>
 
             </tr>
             </tbody>
@@ -28,13 +28,14 @@
 export default {
     name: "ShowUser",
     props: {
-        // user: {
-        //     Type: Array,
-        //     default: () => [],
-        // }
-        user:null
+        user: {
+            Type: Array,
+            default: () => [],
+        }
+
 
     },
+    emits: ['remove', 'show'],
     methods:{
      deleteClikc(id){
          this.$emit('remove', id)

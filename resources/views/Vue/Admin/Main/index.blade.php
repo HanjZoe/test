@@ -1,6 +1,5 @@
 @extends('Admin.layouts.theme')
 @section('main')
-    <adminuserindex></adminuserindex>
+    <router-view></router-view>
+
 @endsection
-
-

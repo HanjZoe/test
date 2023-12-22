@@ -34,18 +34,21 @@
 // });
 //require('./bootstrap');
 import { createApp } from 'vue'
-import AdminUserIndex from "./components/Pages/AdminUserIndex"
+import AdminUserIndex from "./components/Pages/Admin/Users/AdminUserIndex"
 import ShowUser from "./components/Pages/Admin/Users/ShowUser"
 import components from './components/UI/index'
+import IndexComponent from "./components/IndexComponent";
 import './bootstrap'
 import router from "./router/router";
+import {createRouter, createWebHistory} from "vue-router";
 //Vue.component('adminuserindex', require('./components/Pages/AdminUserIndex.vue').default)
+
 const app = createApp(app);
+
 components.forEach(component => {
     app.component(component.name, component)
 })
-app.component('adminuserindex', AdminUserIndex);
-app.component('showuser', ShowUser);
+app.component('adminuserindex', AdminUserIndex).component('showuser', ShowUser).component('index-component', 'IndexComponent');
 
 app
     .use(router)

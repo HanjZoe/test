@@ -1,6 +1,6 @@
 <template>
 <div>
-    <router-view></router-view>
+
     <my-nav-bar></my-nav-bar>
     <div class="content-wrapper">
         <my-user-grid

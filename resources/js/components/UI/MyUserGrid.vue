@@ -22,10 +22,10 @@
                         <td>{{ user.email }}</td>
                         <td>{{ user.created_at }}</td>
                         <td>
-                            <my-popup v-model:show = "CreatePostVisible"><show-user :user="userSelect" @remove ="kek"  @show = "hidenDialog" /></my-popup>
+                            <my-popup v-model:show = "CreatePostVisible"><show-user :user="userSelect" @remove ="deleteUser(id)"  @show = "hidenDialog" /></my-popup>
                             <a href="#" @click.prevent="ShowDialog(user)">Показать</a>
                             <a href="#" @click.prevent="changeEditUserId(user.id,user.role)">Изменить</a>
-                            <a href="#" @click.prevent="$emit('remove', user.id)">Удалить</a>
+                            <a href="#" @click.prevent="deleteUser(user.id)">Удалить</a>
                         </td>
                     </tr>
 
@@ -88,7 +88,6 @@ export default {
     },
     methods: {
         editUser(id, edit, newName, newEmail,selectedRole) {
-            console.log(this.selectedRole)
             if(edit){
                  this.$emit('update', id, newName, newEmail,selectedRole)
             }
@@ -106,15 +105,14 @@ export default {
         },
         ShowDialog(user){
             this.CreatePostVisible = true
-            // this.CreatePostVisible = false
             this.userSelect = user
-            console.log(user)
+
         },
         hidenDialog(){
             this.CreatePostVisible = false
         },
-        kek(id){
-            console.log(id)
+        deleteUser(id){
+            this.$emit('remove', id)
         }
     },
     name: "MyUserGrid"
