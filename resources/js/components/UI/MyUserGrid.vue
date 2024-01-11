@@ -5,6 +5,8 @@
         <div class="card">
             <!-- /.card-header -->
             <div class="card-body p-0">
+
+                <a href="#" @click.prevent="">Создать новую категорию</a>
                 <table class="table table-striped">
                     <thead>
                     <tr>

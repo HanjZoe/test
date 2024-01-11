@@ -84,19 +84,19 @@ use Illuminate\Support\Facades\Route;
 //        Route::delete('/{user}', 'DeleteController')->name('admin.user.destroy');
 //    });
 //});
-////Route::get('phpmyinfo', function () {
-////    phpinfo();
-////})->name('phpmyinfo');
-////Auth::routes(['verify' => true]);
-////
-////});
-//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+//Route::get('phpmyinfo', function () {
+//    phpinfo();
+//})->name('phpmyinfo');
+//Auth::routes(['verify' => true]);
 //
-////Route::get('/{page}', 'Vue\Admin\Main\IndexController')->name('vue.admin.main.index');
-////Route::get('{page}', 'IndexController')->name('vue.admin.main.index');
+//});
+//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+//Route::get('/{page}', 'Vue\Admin\Main\IndexController')->name('vue.admin.main.index');
+//Route::get('{page}', 'IndexController')->name('vue.admin.main.index');
 
 
 Auth::routes();
 
-//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('{page}', 'IndexController')->name('vue.admin.main.index')->where('page','.*');

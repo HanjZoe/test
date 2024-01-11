@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Vue\Admin\User;
+namespace App\Http\Requests\Vue\Admin\Category;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreRequest extends FormRequest
+class UpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,10 +24,7 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' =>  'required|string',
-            'email' => 'required|string|email|unique:users',
-            'password' => 'required|string|confirmed',
-            'role' => 'required|integer'
+            'title' => 'required|string'
         ];
     }
 }

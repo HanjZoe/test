@@ -29,6 +29,7 @@ Route::group(['namespace' => 'Vue', 'prefix' => 'vue'], function(){
             Route::get('/','IndexController@index')->name('vue.admin.user.index');
             Route::delete('/{user}','DeleteController')->name('vue.admin.user.delete');
             Route::patch('/{user}','UpdateController')->name('vue.admin.user.update');
+            Route::post('/', 'StoreController')->name('vue.admin.user.store');
         });
     });
     Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
@@ -36,6 +37,7 @@ Route::group(['namespace' => 'Vue', 'prefix' => 'vue'], function(){
             Route::get('/','IndexController')->name('vue.admin.category.index');
             Route::delete('/{category}','DeleteController')->name('vue.admin.category.delete');
             Route::patch('/{category}','UpdateController')->name('vue.admin.category.update');
+            Route::post('/', 'StoreController')->name('vue.admin.category.store');
         });
     });
 });

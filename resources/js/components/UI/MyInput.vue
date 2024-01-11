@@ -1,5 +1,5 @@
 <template>
-    <input :value="modelValue" :placeholder="placeholder" @input="updateInput">
+    <input class="myinput" :value="modelValue" :placeholder="placeholder" @input="updateInput">
 </template>
 
 <script>
@@ -18,4 +18,8 @@ export default {
 </script>
 
 <style scoped>
+.myinput{
+    width: 100%;
+border-radius: 6px;
+}
 </style>

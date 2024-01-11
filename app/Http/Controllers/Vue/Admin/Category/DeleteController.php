@@ -12,5 +12,6 @@ class DeleteController extends Controller
     {
         $category->delete();
         return response([]);
+
     }
 }

@@ -3,12 +3,18 @@ import MyUserGrid from "./MyUserGrid";
 import MyInput from "./MyInput";
 import MyPopup from "./MyPopup";
 import MyCategoryGrid from "./MyCategoryGrid";
+import ShowUser from "../Pages/Admin/Users/ShowUser"
+import CreateCategory from "../Pages/Admin/Category/CreateCategory";
+import ShowCategory from "../Pages/Admin/Category/ShowCategory";
 export default [
     MyNavBar,
     MyUserGrid,
     MyInput,
     MyPopup,
     MyCategoryGrid,
+    ShowUser,
+    CreateCategory,
+    ShowCategory,
 ]
 // import Vue from 'vue';
 //
