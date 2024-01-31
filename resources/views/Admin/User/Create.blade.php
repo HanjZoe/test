@@ -12,14 +12,6 @@
         @error('email')
         <div>{{$message}}</div>
         @enderror
-        <input type="password" placeholder="Пароль" name="password">
-        @error('password')
-        <div>{{$message}}</div>
-        @enderror
-        <input type="text" placeholder="Подтвердите пароль" name="password_confirmation">
-        @error('password')
-        <div>{{$message}}</div>
-        @enderror
         <div>
             <label>Выберите категорию</label>
             <select name="role">

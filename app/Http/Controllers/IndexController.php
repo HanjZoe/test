@@ -9,7 +9,7 @@ class IndexController extends Controller
 {
     public function __invoke()
     {
-        return view('Vue.Admin.Main.Index');
+        return view('Admin.Main.Index');
     }
 
 }

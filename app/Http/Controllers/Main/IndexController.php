@@ -11,9 +11,7 @@ class IndexController extends Controller
 {
     public function __invoke()
     {
-
-
-//      return redirect()->route('post.index');
-        return view('Vue.Admin.Main.Index');
+      return redirect()->route('post.index');
+       // return view('Vue.Admin.Main.Index');
     }
 }

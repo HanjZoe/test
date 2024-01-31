@@ -57,6 +57,11 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    @if(Auth::user()->role == 0)
+                                        <a class="dropdown-item" href="{{route('admin.main.index')}}">
+                                            Админ панель
+                                        </a>
+                                    @endif
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -66,11 +71,7 @@
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
-                                    @can('admin')
-                                <a class="dropdown-item" href="">
-                                    fgdg
-                                </a>
-                                    @endcan
+
                             </div>
                             </li>
                         @endguest
