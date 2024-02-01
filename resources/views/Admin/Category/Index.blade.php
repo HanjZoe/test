@@ -12,8 +12,8 @@
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="{{route("admin.main.index")}}">Home</a></li>
-                            <li class="breadcrumb-item active">Dashboard v1</li>
+                            <li class="breadcrumb-item"><a href="{{route("admin.main.index")}}">Главная</a></li>
+                            <li class="breadcrumb-item active">Категории</li>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -29,7 +29,7 @@
                         <a href="{{route('admin.category.create')}}" type="button" class="btn btn-block btn-primary">Добавить</a>
                     </div>
                 </div>
-                <div class = "row">
+                <div class="row">
                     <div class="col-6">
                         <div class="card">
 
@@ -38,25 +38,33 @@
                                 <table class="table table-hover text-nowrap">
                                     <thead>
                                     <tr>
-                                        <th>id</th>
-                                        <th>Название</th>
-                                        <th>Дата создания</th>
+                                        <th class="text-center">id</th>
+                                        <th class="text-center">Название</th>
+                                        <th class="text-center">Дата создания</th>
                                         <th colspan="3" class="text-center">Удалить/Изменить</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     @foreach($categories as $category)
                                         <tr>
-                                            <td>{{$category->id}}</td>
-                                            <td>{{$category->title}}</td>
-                                            <td>{{$category->created_at}}</td>
-                                            <td><a href=" {{route('admin.category.show',$category->id)}}"><i class="fas fa-eye"></i></a></td>
-                                            <td> <a href="{{route('admin.category.edit',$category->id)}}"><i class="fas fa-pen"></i></a></td>
-                                            <td> <form method="POST"
+                                            <td class="text-center">{{$category->id}}</td>
+                                            <td class="text-center">{{$category->title}}</td>
+                                            <td class="text-center">{{$category->created_at}}</td>
+                                            <td class="text-center"><a
+                                                    href=" {{route('admin.category.show',$category->id)}}"><i
+                                                        class="fas fa-eye"></i></a></td>
+                                            <td class="text-center"><a
+                                                    href="{{route('admin.category.edit',$category->id)}}"
+                                                    class="text-success"><i class="fas fa-pen"></i></a></td>
+                                            <td class="text-center">
+                                                <form method="POST"
                                                       action="{{route('admin.category.destroy',$category->id)}}">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <input type="submit" value="Удалить">
+                                                    <button class="border-0 bg-transparent">
+                                                        <i class="far fa-trash-alt text-danger" role="button"></i>
+                                                    </button>
+
                                                 </form>
                                             </td>
                                         </tr>

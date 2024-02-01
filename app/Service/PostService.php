@@ -25,8 +25,8 @@ class PostService
     $mainImagePath = Storage::disk('public')->put('/images', $data['main_image']);
     $data['preview_image'] = $previewImagePath;
     $data['main_image'] = $mainImagePath;
-//    unset($data['preview_image']);
-//    unset($data['main_image']);
+//   unset($data['preview_image']);
+//   unset($data['main_image']);
             $post = Post::firstOrCreate($data);
             if (isset($tagIds)) {
                 $post->tags()->attach($tagIds);
@@ -64,8 +64,8 @@ if(isset($data['main_image'])){
 }
 
 
-//    unset($data['preview_image']);
-//    unset($data['main_image']);
+//      unset($data['preview_image']);
+//      unset($data['main_image']);
             $post->update($data);
 
             if (isset($tagIds)) {

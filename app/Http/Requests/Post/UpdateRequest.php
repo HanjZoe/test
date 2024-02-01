@@ -33,4 +33,19 @@ class UpdateRequest extends FormRequest
             'tag_ids.*' => 'integer|exists:tags,id'
         ];
     }
+    public function messages()
+    {
+        return [
+            'title.required' => 'Это поле необходимо',
+            'content.required' => 'Это поле необходимо',
+            'main_image.required' => 'Добавьте изображение',
+            'main_image.file' => 'Необходимо выбрать файл',
+            'preview_image.required' => 'Добавьте изображение',
+            'preview_image.file' => 'Необходимо выбрать файл',
+            'category_id.exists' => 'Категория должна быть',
+            'category_id.required' => 'id должен быть в базе',
+            'tag_ids.exists' => 'id должен быть в базе',
+            'tag_ids.nullable' => 'Тэги должны быть',
+        ];
+    }
 }

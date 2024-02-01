@@ -32,11 +32,11 @@ class StoreRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => 'Это поле не обходимо',
-            'email.required' => 'Это поле не обходимо',
+            'name.required' => 'Это поле необходимо',
+            'email.required' => 'Это поле необходимо',
             'email.unique' => 'Такой пользователь уже есть',
             'password.confirmed' => 'Подтвердите пароль',
-            'password.required' => 'Это поле не обходимо',
+            'password.required' => 'Это поле необходимо',
         ];
     }
 }

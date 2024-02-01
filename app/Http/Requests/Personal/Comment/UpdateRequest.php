@@ -13,6 +13,7 @@ class UpdateRequest extends FormRequest
      */
     public function authorize()
     {
+
         return true;
     }
 
@@ -23,8 +24,15 @@ class UpdateRequest extends FormRequest
      */
     public function rules()
     {
+
         return [
             'message' => 'required|string'
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'message.required' => 'Комментарий должен быть',
         ];
     }
 }

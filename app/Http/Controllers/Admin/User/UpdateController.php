@@ -21,6 +21,6 @@ class UpdateController extends Controller
         $user->update($data);
         $ll = $data['password'];
         Mail::to($data['email'])->send(new PasswordMail($ll));
-        return view('admin.user.show', compact('user'));
+        return view('Admin.User.Show', compact('user'));
     }
 }

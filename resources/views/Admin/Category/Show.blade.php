@@ -7,13 +7,25 @@
         <div class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
-                    <div class="col-sm-6">
-                        <h1 class="m-0"> Категория {{$category->title}}</h1>
+                    <div class="col-sm-6 d-flex align-items-center">
+                        <h1 class="m-0 mr-2"> Категория {{$category->title}}</h1>
+                        <a href="{{route('admin.category.edit',$category->id)}}" class="text-success"><i
+                                class="fas fa-pen"></i></a>
+                        <form method="POST"
+                              action="{{route('admin.category.destroy',$category->id)}}">
+                            @csrf
+                            @method('DELETE')
+                            <button class="border-0 bg-transparent">
+                                <i class="far fa-trash-alt text-danger" role="button"></i>
+                            </button>
+
+                        </form>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="{{route("admin.main.index")}}">Home</a></li>
-                            <li class="breadcrumb-item active">Dashboard v1</li>
+                            <li class="breadcrumb-item"><a href="{{route("admin.main.index")}}">Главная</a></li>
+                            <li class="breadcrumb-item"><a href="{{route("admin.category.index")}}">Категории</a></li>
+                            <li class="breadcrumb-item active">Категория {{$category->title}}</li>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -26,10 +38,10 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-1 mb-3">
-                        <a href="{{route('admin.category.create')}}" type="button" class="btn btn-block btn-primary">Добавить</a>
+
                     </div>
                 </div>
-                <div class = "row">
+                <div class="row">
                     <div class="col-6">
                         <div class="card">
 
@@ -67,41 +79,5 @@
             </div><!-- /.container-fluid -->
         </section>
         <!-- /.content -->
-    </div>
-
-
-
-
-
-
-    <div>
-        Категория {{$category->title}} <a href="{{route('admin.category.edit',$category->id)}}">Изменить</a>
-
-        <form method="POST" action="{{route('admin.category.destroy',$category->id)}}">
-            @csrf
-            @method('DELETE')
-            <input type="submit" value="Удалить">
-        </form>
-
-    </div>
-    <div>
-        <table>
-            <thead>
-            <tr>
-                <th>id</th>
-                <th>Название</th>
-                <th>Дата создания</th>
-
-            </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>{{$category->id}}</td>
-                    <td>{{$category->title}}</td>
-                    <td>{{$category->created_at}}</td>
-
-                </tr>
-            </tbody>
-        </table>
     </div>
 @endsection

@@ -27,4 +27,10 @@ class StoreRequest extends FormRequest
             'message' => 'required|string'
         ];
     }
+    public function messages()
+    {
+        return [
+            'message.required' => 'Комментарий должен быть',
+        ];
+    }
 }

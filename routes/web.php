@@ -84,9 +84,13 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
         Route::delete('/{user}', 'DeleteController')->name('admin.user.destroy');
     });
 });
-Route::get('phpmyinfo', function () {
-    phpinfo();
-})->name('phpmyinfo');
+Route::group(['namespace' => 'Category', 'prefix' => 'categories'] , function (){
+    Route::group(['namespace' => 'Post', 'prefix' => '{category}/post'] , function (){
+        Route::get('/', 'IndexController')->name('category.post.index');
+    });
+});
+
+
 Auth::routes(['verify' => true]);
 
 

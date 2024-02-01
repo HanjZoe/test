@@ -30,7 +30,7 @@ class UpdateRequest extends FormRequest
     public function messages()
     {
         return [
-            'title.required' => 'Это поле не обходимо',
+            'title.required' => 'Это поле необходимо',
         ];
     }
 }

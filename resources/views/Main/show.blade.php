@@ -97,8 +97,8 @@
                                         <div class="form-group col-12" data-aos="fade-up">
                                             <label for="comment" class="sr-only">Комментарий</label>
                                             <textarea name="message" id="comment" class="form-control"
-                                                      placeholder="Comment"
-                                                      rows="10">Комментарий</textarea>
+                                                      placeholder="Комментарий"
+                                                      rows="10"></textarea>
                                         </div>
                                     </div>
 

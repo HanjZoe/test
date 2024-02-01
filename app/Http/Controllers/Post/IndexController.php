@@ -12,16 +12,16 @@ class IndexController extends Controller
     public function __invoke()
     {
         $categories = Category::all();
-        $posts = Post::paginate(9);
+        $posts = Post::paginate(6);
         if(count($categories) > 4){
             $randomPosts = Post::get()->random(4);
         } else{
             $randomPosts = $posts;
         }
-        $likedPosts = Post::withCount('likedUsers')->orderBy('liked_users_count', 'DESC')->get();
+        $likedPosts = Post::withCount('likedUsers')->orderBy('liked_users_count', 'DESC')->get()->take(4);
 
         $postCount = 1;
 
-      return view('Main.mainpage', compact('categories', 'posts','likedPosts','postCount'));
+      return view('Main.mainpage', compact('categories', 'posts','likedPosts','postCount','randomPosts'));
     }
 }
