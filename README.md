@@ -33,6 +33,6 @@ php artisan db:seed
     
 php artisan serve 
 
-php artisan queue:work
+php artisan queue:work1
 ```
 
